@@ -1,0 +1,72 @@
+#include<iostream>
+#include<string>
+#include<vector>
+
+using namespace std;
+void menu();
+int main()
+{
+  cout << "What would you like to do? there are many options to choose from.\n";
+vector<string>names;
+vector<string>::iterator changeIter;
+vector<string>::iterator readIter;
+
+string playerInput,name,changeName,removeName;
+do
+{
+menu();
+cin>>playerInput;
+if(playerInput=="Add" || playerInput=="add")
+{
+cout<<"Enter a name to add: ";
+cin>>name;
+names.push_back(name);
+}
+// add a name to vector
+else if(playerInput=="Change" || playerInput=="change")
+{
+cout<<"what name do you want to change? ";
+cin>>changeName;
+cout<<"change name to what? ";
+cin>>name;
+changeIter = names.begin();
+if (changeIter != names.end())
+{
+names[ changeIter - names.begin()]=name;
+cout<<name<<" has been changes with "<<name<<endl<<endl;
+}
+else
+std::cout << "Element not found in named\n";
+}
+else if(playerInput=="Rempove" || playerInput=="remove")
+{
+cout<<"what name to remove? ";
+cin>>removeName;
+changeIter = names.begin();
+if (changeIter != names.end())
+{
+names.erase(changeIter);
+cout<<removeName<<" has been removed from the vector\n"<<endl;
+}
+else
+std::cout << "Element not found in named\n";
+
+}
+else if(playerInput=="Show" || playerInput=="show")
+{
+for (readIter = names.begin(); readIter != names.end(); ++readIter)
+cout << *readIter<<endl;
+}
+else if(playerInput=="Stop" || playerInput=="stop")
+break;
+else
+cout<<"that's not one of the options!"<<endl;
+} while(playerInput != "Stop" || playerInput != "stop");
+  cout << "Thanks for playing the game, I hope you enjoyed your time.\n";
+return 1;
+}
+
+void menu()
+{
+cout<<"\n(Add): Add a name\n(Change) Change a name\n(Remove) Remove a name\n(Show) List names\n(Stop) quit\nEnter Your choice:";
+}
